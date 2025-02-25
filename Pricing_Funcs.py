@@ -1,4 +1,4 @@
-def Binomial_Tree_Eur(S0,K,r,T,N,IV,ticker,type):
+def Binomial_Tree_Eur(S0,K,r,T,N,IV,type):
 
     import Param_Est
     import numpy as np
@@ -29,7 +29,7 @@ def Binomial_Tree_Eur(S0,K,r,T,N,IV,ticker,type):
 
     val = round(EVdisc,2)
 
-    return val,sig,p
+    return val
 
 
 
