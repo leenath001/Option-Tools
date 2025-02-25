@@ -1,0 +1,31 @@
+def opt_data(ticker, type):
+    import yfinance as yf
+
+# Try an ETF like "EXSA.DE" if this does not work
+    stoxx = yf.Ticker(ticker)
+
+# Get available expiration dates
+    expirations = stoxx.options
+# List of expiration dates
+
+# Select an expiration date
+    expiry = expirations[0]  # Use the first available expiry date
+
+# Get option chain (calls & puts)
+    option_chain = stoxx.option_chain(expiry)
+
+# Extract calls and puts
+    if type == 'call':
+        calls = option_chain.calls
+        return expiry, calls[['strike','lastPrice','impliedVolatility']]
+    elif type == 'put':
+        puts = option_chain.puts
+        return expiry, puts[['strike', 'lastPrice', 'impliedVolatility']]
+        
+def equity_data(ticker,start,end):
+    import yfinance as yf
+
+# Fetch historical market data
+    historical_data = yf.download(ticker,start,end)  # data for the last year
+    return historical_data
+
