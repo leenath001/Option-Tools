@@ -24,3 +24,15 @@ def equity_data(ticker,start,end):
 
     historical_data = yf.download(ticker,start,end)  # data for the last year
     return historical_data
+
+def equity_bidask(ticker):
+
+    import yfinance as yf
+
+    equity = yf.Ticker(ticker)
+    bid = equity.info['bid']
+    ask = equity.info['ask']
+
+    ba = 'Bid : {}, Ask : {}'.format(bid,ask)
+
+    return(ba)
