@@ -21,3 +21,5 @@ Utilizes yfinance API to grab equity data. Provides open, close, high, low, and 
 *  ticker : takes str input. (i.e 'AAPL')
 *  start : start date of desired data (inclusive)
 *  end : end date of desired data (exclusive) 
+
+Currently working on a volatility space constructor 
