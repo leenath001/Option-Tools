@@ -35,4 +35,4 @@ def equity_bidask(ticker):
 
     ba = 'Bid : {}, Ask : {}'.format(bid,ask)
 
-    return(ba)
+    return ba, bid, ask
