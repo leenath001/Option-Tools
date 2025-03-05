@@ -21,4 +21,15 @@ Utilizes yfinance API to grab equity data. Provides open, close, high, low, and 
 *  start : start date of desired data (inclusive)
 *  end : end date of desired data (exclusive) 
 
+## IV_solver(S0,K,r,T,N,type,MKT_price,IV_guess)
+Uses Binomial_Tree_Eur and scipy to solve for IV. Currently troubleshooting
+*  S0 : Initial price
+*  K : Strike
+*  r : risk-free rate
+*  T : days till expiry
+*  N : number of branches (end node has N+1 possibilities)
+*  IV : Implied volatility
+*  type : 'call' or 'put'
+*  MKT_price : current traded price of option
+*  IV_guess : guess to initialize function. 
 Currently working on a volatility space constructor 
