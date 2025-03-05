@@ -21,6 +21,10 @@ Utilizes yfinance API to grab equity data. Provides open, close, high, low, and 
 *  start : start date of desired data (inclusive)
 *  end : end date of desired data (exclusive) 
 
+## equity_bidask(ticker)
+Provides bid/ask price of specified security. Outputs bidask [0], bid [1], and ask [2]
+
+
 ## IV_solver(S0,K,r,T,N,type,MKT_price,IV_guess)
 Uses Binomial_Tree_Eur and scipy to solve for IV. Currently troubleshooting
 *  S0 : Initial price
