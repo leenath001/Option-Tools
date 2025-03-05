@@ -9,7 +9,6 @@ Binomial Tree model used to price european options
 *  N : number of branches (end node has N+1 possibilities)
 *  IV : Implied volatility
 *  type : 'call' or 'put'
-(still in progress!!)
 
 ## opt_data(ticker,type)
 Utilizes yfinance API to grab option chain data. Provides strikes, last price, and IV data. Function asks user for desired expiry date to provide relevant chain.
