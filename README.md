@@ -1,7 +1,7 @@
 # Option-Tools
 
 ## Binomial_Tree_Eur(S0,K,r,T,N,IV,type):
-Binomial Tree model used to price european options
+Binomial Tree model used to price european options (Currently working to perfect)
 *  S0 : Initial price
 *  K : Strike
 *  r : risk-free rate
