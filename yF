@@ -36,3 +36,37 @@ def equity_bidask(ticker):
     ba = 'Bid : {}, Ask : {}'.format(bid,ask)
 
     return ba, bid, ask
+
+# IN PROGRESS   
+def opt_data_volsmile(ticker, type):
+
+    # function used to plot vol smile
+    
+    import yfinance as yf
+    import pandas as pd
+    import numpy as np
+
+    # user chooses relevant date of chain
+    stoxx = yf.Ticker(ticker)
+    expirations = stoxx.options
+    for ind,dates in enumerate(expirations):
+        print(ind,":",dates)
+    choice = int(input('Which date? : '))
+    expiry = expirations[choice]
+    option_chain = stoxx.option_chain(expiry)
+
+    # grabbing current fair price of underlying
+    ba = df.equity_bidask(ticker)
+    S = (ba[1] + ba[2])/2       
+
+    # building x by 2 array for data 
+    volframe = np.zeros(len(option_chain),2)
+
+    # loop thru array so that each row is [strike, IV]        
+
+    if type == 'call':
+        calls = option_chain.calls
+        return expiry, calls[['strike','lastPrice','impliedVolatility']]
+    elif type == 'put':
+        puts = option_chain.puts
+        return expiry, puts[['strike', 'lastPrice', 'impliedVolatility']] 
