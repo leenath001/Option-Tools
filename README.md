@@ -24,6 +24,9 @@ Utilizes yfinance API to grab equity data. Provides open, close, high, low, and 
 ## equity_bidask(ticker)
 Provides bid/ask price of specified security. Outputs bidask [0], bid [1], and ask [2]
 
+## opt_data_IVchain(ticker)
+Provides option data for OTM puts/calls. Pandas DF is arranged as follows [OTM puts, OTM calls]. Use case is for plotting vol smile/3d vol surface
+*  OTM options are used as they are more actively traded, providing accurate data.
 
 ## IV_solver(S0,K,r,T,N,type,MKT_price,IV_guess)
 Uses Binomial_Tree_Eur and scipy to solve for IV. Currently troubleshooting
