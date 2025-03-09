@@ -37,16 +37,19 @@ def equity_bidask(ticker):
 
     return ba, bid, ask
 
-# IN PROGRESS   
-def opt_data_volsmile(ticker, type):
+def opt_data_IVchain(ticker):
 
-    # function used to plot vol smile
+    # function gives us option data for OTM calls/puts, up and down chain for plotting of vol smile/surface
     
     import yfinance as yf
     import pandas as pd
     import numpy as np
+    import Data_Funcs as df
 
-    # user chooses relevant date of chain
+    pd.set_option('display.max_rows', None)
+    pd.set_option('display.max_columns', None)
+
+    # user chooses relevant date of chain, now we have both call and put data 
     stoxx = yf.Ticker(ticker)
     expirations = stoxx.options
     for ind,dates in enumerate(expirations):
@@ -54,19 +57,36 @@ def opt_data_volsmile(ticker, type):
     choice = int(input('Which date? : '))
     expiry = expirations[choice]
     option_chain = stoxx.option_chain(expiry)
+    calls = option_chain.calls[['strike','lastPrice','openInterest','impliedVolatility']]
+    puts = option_chain.puts[['strike','lastPrice','openInterest','impliedVolatility']]
 
     # grabbing current fair price of underlying
     ba = df.equity_bidask(ticker)
-    S = (ba[1] + ba[2])/2       
+    S = (ba[1] + ba[2])/2 
 
     # building x by 2 array for data 
-    volframe = np.zeros(len(option_chain),2)
+    norows = max(len(calls),len(puts))
+    volframeputs = pd.DataFrame()
+    volframecalls = pd.DataFrame()
+    MASVF = pd.DataFrame()
 
-    # loop thru array so that each row is [strike, IV]        
+    # find indexes of calls/puts that we call up to
+    putstrikesadj = puts.loc[:,'strike'] - S
+    callstrikesadj = calls.loc[:,'strike'] - S
 
-    if type == 'call':
-        calls = option_chain.calls
-        return expiry, calls[['strike','lastPrice','impliedVolatility']]
-    elif type == 'put':
-        puts = option_chain.puts
-        return expiry, puts[['strike', 'lastPrice', 'impliedVolatility']] 
+    def find_first_positive(column):
+            positive_values = column[column > 0]
+            if not positive_values.empty:
+                return positive_values.index[0]
+      
+        
+    x = find_first_positive(callstrikesadj)
+    y = find_first_positive(putstrikesadj) - 1
+
+    # want to populate volframe with IV data
+    volframeputs = puts.loc[0:y,:]
+    volframecalls = calls.loc[x:,:]
+    MASVF = volframeputs._append(volframecalls)
+    MASVF.index = range(len(MASVF))
+    
+    return MASVF
