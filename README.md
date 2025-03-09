@@ -1,7 +1,7 @@
 # Option-Tools
 
 ## Binomial_Tree_Eur(S0,K,r,T,N,IV,type):
-Binomial Tree model used to price european options (Currently working to perfect)
+Binomial Tree model used to price european options (Currently troubleshooting. Affects IV_solver fun)
 *  S0 : Initial price
 *  K : Strike
 *  r : risk-free rate
@@ -29,7 +29,7 @@ Provides option data for OTM puts/calls. Pandas DF is arranged as follows [OTM p
 *  OTM options are used as they are more actively traded, providing accurate data.
 
 ## IV_solver(S0,K,r,T,N,type,MKT_price,IV_guess)
-Uses Binomial_Tree_Eur and scipy to solve for IV. Currently troubleshooting
+Uses Binomial_Tree_Eur and scipy to solve for IV. 
 *  S0 : Initial price
 *  K : Strike
 *  r : risk-free rate
