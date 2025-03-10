@@ -12,10 +12,10 @@ def opt_data(ticker, type):
     option_chain = stoxx.option_chain(expiry)
     if type == 'call':
         calls = option_chain.calls
-        return expiry, calls[['strike','lastPrice','impliedVolatility']]
+        return expiry, calls[['strike','lastPrice','openInterest','impliedVolatility']]
     elif type == 'put':
         puts = option_chain.puts
-        return expiry, puts[['strike', 'lastPrice', 'impliedVolatility']]
+        return expiry, puts[['strike', 'lastPrice','openInterest', 'impliedVolatility']]
         
 def equity_data(ticker,start,end):
     
