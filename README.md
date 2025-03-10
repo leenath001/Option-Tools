@@ -27,6 +27,9 @@ Provides bid/ask price of specified security. Outputs bidask [0], bid [1], and a
 ## opt_data_IVchain(ticker)
 Provides option data for OTM puts/calls. Pandas DF is arranged as follows [OTM puts, OTM calls]. Use case is for plotting vol smile/3d vol surface
 *  OTM options are used as they are more actively traded, providing accurate data.
+*  Vol smile implies expected upwards/downside movement by traders. OTM calls/puts are used to hedge.
+*  Vol smirk implies expeced downside movement by traders. OTM puts are used to hedge 
+See main for plotting of vol smile/smirk example
 
 ## IV_solver(S0,K,r,T,N,type,MKT_price,IV_guess)
 Uses Binomial_Tree_Eur and scipy to solve for IV. 
