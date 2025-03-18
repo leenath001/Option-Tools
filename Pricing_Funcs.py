@@ -33,6 +33,7 @@ def Binomial_Tree_Eur(S0,K,r,T,N,IV,type):
     return val
     
 def IV_solver(S0,K,r,T,N,type,MKT_price,IV_guess):
+    # instead of using a binomial tree model, solve the BS equation for IV
     
     import scipy.optimize as opt
     
