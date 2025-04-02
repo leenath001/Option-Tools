@@ -43,3 +43,9 @@ Uses Binomial_Tree_Eur and scipy to solve for IV.
 *  MKT_price : current traded price of option
 *  IV_guess : guess to initialize function. 
 Currently working on a volatility space constructor 
+
+## Put_Call_ratio(ticker)
+*  Returns ratio of puts/calls traded on most active contracts
+*  Uses first OTM put and call volume to calculate ratio
+*  Ratio > 1 implies expected bearish move -> traders buying more puts than calls
+*  Ratio < 1 implies expected bullish move -> traders buying more calls than puts
